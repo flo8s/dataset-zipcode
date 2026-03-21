@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: mart_zipcode
+    description: 日本郵便の全国郵便番号データ
+    access: public
+    config:
+      contract:
+        enforced: true
+    meta:
+      title: "全国郵便番号データ"
+      tags: ["郵便番号", "住所", "日本郵便"]
+      license: "自由利用"
+      license_url: "https://www.post.japanpost.jp/zipcode/dl/utf-readme.html"
+      source_url: "https://www.post.japanpost.jp/zipcode/dl/utf-zip.html"
+      published: true
+    columns:
+      - name: lg_code
+        data_type: VARCHAR
+        meta:
+          title: 全国地方公共団体コード
+          description: JIS X0401, X0402 (6桁、チェックディジット付き)
+      - name: old_zipcode
+        data_type: VARCHAR
+        meta:
+          title: 旧郵便番号
+          description: 5桁
+      - name: zipcode
+        data_type: VARCHAR
+        meta:
+          title: 郵便番号
+          description: 7桁
+      - name: prefecture_kana
+        data_type: VARCHAR
+        meta:
+          title: 都道府県名カタカナ
+      - name: city_kana
+        data_type: VARCHAR
+        meta:
+          title: 市区町村名カタカナ
+      - name: town_kana
+        data_type: VARCHAR
+        meta:
+          title: 町域名カタカナ
+      - name: prefecture
+        data_type: VARCHAR
+        meta:
+          title: 都道府県名漢字
+      - name: city
+        data_type: VARCHAR
+        meta:
+          title: 市区町村名漢字
+      - name: town
+        data_type: VARCHAR
+        meta:
+          title: 町域名漢字
+      - name: has_multiple_zipcodes
+        data_type: INTEGER
+        meta:
+          title: 一町域複数郵便番号フラグ
+          description: "0/1"
+      - name: has_koaza_banchi
+        data_type: INTEGER
+        meta:
+          title: 小字毎番地フラグ
+          description: "0/1"
+      - name: has_chome
+        data_type: INTEGER
+        meta:
+          title: 丁目有無フラグ
+          description: "0/1"
+      - name: has_multiple_towns
+        data_type: INTEGER
+        meta:
+          title: 複数町域フラグ
+          description: "0/1"
+      - name: update_status
+        data_type: INTEGER
+        meta:
+          title: 更新表示
+          description: 0=変更なし、1=変更あり、2=廃止
+      - name: update_reason
+        data_type: INTEGER
+        meta:
+          title: 変更理由
+          description: 0=変更なし、1=市政施行、2=住居表示、3=区画整理、4=郵便区調整、5=訂正、6=廃止
