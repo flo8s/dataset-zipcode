@@ -23,5 +23,5 @@ zipcode:
           alias: zipcode
           is_ducklake: true
           options:
-            DATA_PATH: "{{ env_var('DUCKLAKE_STORAGE', 'dist') }}/ducklake.duckdb.files/"
+            DATA_PATH: "{{ env_var('DUCKLAKE_STORAGE', '.fdl') }}/ducklake.duckdb.files/"
             OVERRIDE_DATA_PATH: true
