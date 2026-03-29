@@ -1,7 +1,16 @@
 name = "zipcode"
 
-[storage]
+[targets.default]
+url = "s3://${FDL_S3_BUCKET}"
 public_url = "https://data.queria.io"
+s3_endpoint = "${FDL_S3_ENDPOINT}"
+s3_access_key_id = "${FDL_S3_ACCESS_KEY_ID}"
+s3_secret_access_key = "${FDL_S3_SECRET_ACCESS_KEY}"
 
-[remotes]
-origin = "s3://${FDL_S3_BUCKET}"
+[meta]
+title = "郵便番号データ"
+description = "日本郵便が公開している全国の郵便番号データ"
+cover = "📮"
+tags = ['郵便番号', '住所', '日本郵便']
+repository_url = "https://github.com/flo8s/dataset-zipcode"
+schemas.main.title = "メイン"
