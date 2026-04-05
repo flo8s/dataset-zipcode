@@ -10,8 +10,6 @@ models:
     meta:
       title: "全国郵便番号データ"
       tags: ["郵便番号", "住所", "日本郵便"]
-      license: "自由利用"
-      license_url: "https://www.post.japanpost.jp/zipcode/dl/utf-readme.html"
       source_url: "https://www.post.japanpost.jp/zipcode/dl/utf-zip.html"
       published: true
     columns:

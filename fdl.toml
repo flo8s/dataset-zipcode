@@ -13,6 +13,8 @@ url = "~/.local/share/fdl"
 public_url = "http://localhost:4001"
 
 [meta]
+license = "自由利用（日本郵便）"
+license_url = "https://www.post.japanpost.jp/zipcode/dl/utf-readme.html"
 title = "郵便番号データ"
 description = "日本郵便が公開している全国の郵便番号データ"
 cover = "📮"
