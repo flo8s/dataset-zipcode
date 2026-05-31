@@ -3,33 +3,43 @@ zipcode:
   outputs:
     default:
       type: duckdb
-      path: "md:?motherduck_token={{ env_var('MOTHERDUCK_TOKEN', '') }}"
-      database: zipcode
-      schema: main
+      path: ":memory:"
       threads: 4
       extensions:
         - httpfs
-        - motherduck
+        - postgres
         - ducklake
         - name: zipfs
           repo: community
+      secrets:
+        - type: r2
+          key_id: "{{ env_var('QUERIA_S3_ACCESS_KEY_ID', '') }}"
+          secret: "{{ env_var('QUERIA_S3_SECRET_ACCESS_KEY', '') }}"
+          account_id: "{{ env_var('CF_ACCOUNT_ID', '') }}"
       attach:
-        - path: "md:zipcode"
+        - path: "ducklake:postgres:{{ env_var('NEON_DATABASE_URL', '') }}"
           alias: zipcode
-          is_ducklake: true
+          options:
+            data_path: "r2://{{ env_var('QUERIA_S3_BUCKET', '') }}/zipcode/ducklake.duckdb.files/"
+            meta_schema: "zipcode"
     local:
       type: duckdb
-      path: "md:?motherduck_token={{ env_var('MOTHERDUCK_TOKEN', '') }}"
-      database: zipcode
-      schema: main
+      path: ":memory:"
       threads: 4
       extensions:
         - httpfs
-        - motherduck
+        - postgres
         - ducklake
         - name: zipfs
           repo: community
+      secrets:
+        - type: r2
+          key_id: "{{ env_var('QUERIA_S3_ACCESS_KEY_ID', '') }}"
+          secret: "{{ env_var('QUERIA_S3_SECRET_ACCESS_KEY', '') }}"
+          account_id: "{{ env_var('CF_ACCOUNT_ID', '') }}"
       attach:
-        - path: "md:dev_zipcode"
+        - path: "ducklake:postgres:{{ env_var('NEON_DATABASE_URL', '') }}"
           alias: zipcode
-          is_ducklake: true
+          options:
+            data_path: "r2://{{ env_var('QUERIA_DEV_S3_BUCKET', 'queria-dev') }}/zipcode/ducklake.duckdb.files/"
+            meta_schema: "dev_zipcode"
