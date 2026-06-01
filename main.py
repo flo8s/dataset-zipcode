@@ -1,12 +1,8 @@
 """dbt build + snapshot pipeline.
 
-dbt build writes models into MotherDuck DuckLake (metadata) + R2 (Parquet).
-Snapshot exports MotherDuck's DuckLake metadata to a standalone DuckDB file
-in R2 so that queria-web (DuckDB WASM) can ATTACH it read-only.
-
-Snapshot must run in the SAME Python process as the dbt build — MotherDuck's
-`__ducklake_metadata_<db>` is only attachable while `md:<db>` was recently
-touched in the same session.
+dbt build writes models into Neon DuckLake (metadata, per-dataset schema)
++ R2 (Parquet). Snapshot exports the Neon schema to a standalone DuckDB
+file in R2 so that queria-web (DuckDB WASM) can ATTACH it read-only.
 
 Usage:
     python main.py [target]
